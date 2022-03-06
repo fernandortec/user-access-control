@@ -1,15 +1,5 @@
-import { FastifyPluginCallback, FastifyPluginOptions } from 'fastify';
+import { Router } from 'express';
 
-import { userRoutes } from './user.routes';
+const routes = Router();
 
-const indexRouter: FastifyPluginCallback<FastifyPluginOptions> = (
-  server,
-  _options,
-  done
-) => {
-  server.register(userRoutes, { prefix: 'users' });
-
-  done();
-};
-
-export { indexRouter };
+export { routes };

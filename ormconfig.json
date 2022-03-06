@@ -1,0 +1,13 @@
+{
+  "type": "postgres",
+  "host": "jelani.db.elephantsql.com",
+  "port": "5432",
+  "username": "gyvfzjas",
+  "password": "cubHnl6Yao5D447GRY3mu3fbOSdc8IzM",
+  "database": "gyvfzjas",
+  "entities": ["src/entity/**/*.ts"],
+  "migrations": ["src/migration/**/*.ts"],
+  "cli": {
+    "migrationsDir": "src/infra/database/migrations"
+  }
+}

@@ -1,26 +1,29 @@
-import Fastify from 'fastify';
+import dotenv from 'dotenv';
+import express from 'express';
+
 import 'reflect-metadata';
+import { routes } from './routes/index.routes';
 import './shared/container';
 
-import { indexRouter } from './routes/index.routes';
-import AppError from './shared/errors/AppError';
+const path = `${__dirname}/../../../.env`;
 
-const app = Fastify();
+dotenv.config({ path });
 
-app.register(indexRouter);
+const app = express();
 
-app.setErrorHandler((err, request, reply) => {
-  if (err instanceof AppError) {
-    reply.status(err.statusCode).send({
-      status: 'error',
-      statusCode: err.statusCode,
-      message: err.message
-    });
-  }
-  reply.status(500).send({
-    status: 'error',
-    message: `Internal Server Error ${err.message}`
-  });
-});
+app.use(express.json());
+app.use(routes);
+
+// if (err instanceof AppError) {
+//   reply.status(err.statusCode).send({
+//     status: 'error',
+//     statusCode: err.statusCode,
+//     message: err.message
+//   });
+// }
+// reply.status(500).send({
+//   status: 'error',
+//   message: `Internal Server Error ${err.message}`
+// });
 
 export { app };
