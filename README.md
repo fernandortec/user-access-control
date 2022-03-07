@@ -2,7 +2,7 @@
 # User access control
 
 ### Description
-In this project I created a User Access Control, using lists that define the user's permissions and roles.
+For this project, I've created a User Access Control using lists that define the user's permissions and roles.
 
 The project's objective was to create an application that evaluates and controls users' access permissions.
 
@@ -35,6 +35,6 @@ yarn dev | npm run dev
 ```
 
 ### Observations:
-While running a request there may appear a dependency injection error.
-The source of the error is unknown and I could not trace it.
-The ways to solve the error are: to restart the server, or delete and reinstall node_modules;
+While running a request a dependency injection error may show up.
+The source of this error is unknown and I could not trace it.
+Possible workarounds for the error are restarting the server, or deleting and reinstalling node_modules;
