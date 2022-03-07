@@ -1,10 +1,11 @@
 import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
 
+import { BaseEntity } from './BaseEntity';
 import { Permission } from './Permission';
 import { Role } from './Role';
 
 @Entity('users')
-class User {
+class User extends BaseEntity {
   @Column()
   username: string;
 

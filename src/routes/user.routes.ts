@@ -1,17 +1,14 @@
-import { FastifyPluginCallback, FastifyPluginOptions } from 'fastify';
+import { Router } from 'express';
 
-import { CreateUserController } from '../modules/user/useCases/CreateUser/CreateUserController';
+import { CreateUserController } from '../modules/user/useCases/createUser/CreateUserController';
+import { UserSessionController } from '../modules/user/useCases/userSession/UserSessionController';
+
+const userRoutes = Router();
 
 const createUserController = new CreateUserController();
+const userSessionController = new UserSessionController();
 
-const userRoutes: FastifyPluginCallback<FastifyPluginOptions> = (
-  server,
-  _options,
-  done
-) => {
-  server.post('/', createUserController.handleRequest);
-
-  done();
-};
+userRoutes.post('/users', createUserController.handle);
+userRoutes.post('/login', userSessionController.handle);
 
 export { userRoutes };
