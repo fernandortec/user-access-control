@@ -9,7 +9,12 @@ class UserSessionController {
 
     const userSessionUseCase = container.resolve(UserSessionUseCase);
 
-    const token = await userSessionUseCase.userSession({ username, password });
+    const { token, userId } = await userSessionUseCase.userSession({
+      username,
+      password
+    });
+
+    request.userId = userId;
 
     return response.json(token);
   }

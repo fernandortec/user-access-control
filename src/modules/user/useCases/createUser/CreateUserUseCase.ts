@@ -13,13 +13,10 @@ class CreateUserUseCase {
     private userRepository: UserRepository
   ) {}
 
-  async createUser({
-    password,
-    username
-  }: CreateUserDto): Promise<User | AppError> {
+  async createUser({ password, username }: CreateUserDto): Promise<User> {
     const existsUser = await this.userRepository.findOne(username);
 
-    if (existsUser) return new AppError('User already exists');
+    if (existsUser) throw new AppError('User already exists');
 
     const passwordHash = await hash(password, 8);
 

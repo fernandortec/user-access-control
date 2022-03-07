@@ -13,7 +13,10 @@ class UserSessionUseCase {
     private userRepository: UserRepository
   ) {}
 
-  async userSession({ username, password }: CreateUserDto): Promise<string> {
+  async userSession({
+    username,
+    password
+  }: CreateUserDto): Promise<{ token: string; userId: string }> {
     const user = await this.userRepository.findOne(username);
 
     if (!user) throw new AppError('User does not exists');
@@ -26,7 +29,7 @@ class UserSessionUseCase {
       subject: user.id
     })}`;
 
-    return token;
+    return { token, userId: user.id };
   }
 }
 export { UserSessionUseCase };

@@ -18,10 +18,10 @@ class CreateRolePermissionUseCase {
   async createRolePermission({
     permissions,
     roleId
-  }: CreateRolePermissionDto): Promise<Role | AppError> {
+  }: CreateRolePermissionDto): Promise<Role> {
     const role = await this.roleRepository.findById(roleId);
 
-    if (!role) return new AppError('Role does not exists');
+    if (!role) throw new AppError('Role does not exists');
 
     const permissionsByIds = await this.permissionRepository.findByIds(
       permissions

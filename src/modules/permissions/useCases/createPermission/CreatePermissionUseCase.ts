@@ -15,10 +15,10 @@ class CreatePermissionUseCase {
   async createPermission({
     description,
     name
-  }: CreatePermissionDto): Promise<Permission | AppError> {
+  }: CreatePermissionDto): Promise<Permission> {
     const permissionExists = await this.permissionRepository.findOne(name);
 
-    if (permissionExists) return new AppError('Permission already exists');
+    if (permissionExists) throw new AppError('Permission already exists');
     const permission = await this.permissionRepository.create({
       description,
       name

@@ -16,10 +16,10 @@ class CreateProductUseCase {
     description,
     name,
     price
-  }: CreateProductDto): Promise<Product | AppError> {
+  }: CreateProductDto): Promise<Product> {
     const productExists = await this.productRepository.findOne(name);
 
-    if (productExists) return new AppError('Product already exists');
+    if (productExists) throw new AppError('Product already exists');
 
     const product = await this.productRepository.create({
       description,

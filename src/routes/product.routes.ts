@@ -14,7 +14,7 @@ productRoutes.get('/products', getAllProductsController.handle);
 productRoutes.post(
   '/products',
   ensuredAuthenticated(),
-  can(['list_product', 'create_product']),
+  can(['create_product']),
   createProductController.handle
 );
 

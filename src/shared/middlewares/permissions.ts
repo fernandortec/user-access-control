@@ -15,7 +15,7 @@ const can = (permissionsParams: string[]) => {
     const user = await userRepository.findByIdWithRelations(userId, [
       'permissions'
     ]);
-
+    console.log(user);
     if (!user)
       return response.status(400).json(new AppError('User does not exists'));
 
