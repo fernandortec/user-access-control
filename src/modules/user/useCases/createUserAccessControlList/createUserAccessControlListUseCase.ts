@@ -22,10 +22,10 @@ class CreateUserAccessControlListUseCase {
     permissions,
     roles,
     userId
-  }: CreateUserAccessControlListDto): Promise<User | AppError> {
+  }: CreateUserAccessControlListDto): Promise<User> {
     const user = await this.userRepository.findById(userId);
 
-    if (!user) return new AppError('User does not exists');
+    if (!user) throw new AppError('User does not exists');
 
     const permissionsByIds = await this.permissionRepository.findByIds(
       permissions

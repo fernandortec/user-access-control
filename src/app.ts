@@ -1,10 +1,11 @@
+import 'reflect-metadata';
+import './shared/container';
+import './infra/database';
+
 import dotenv from 'dotenv';
 import express from 'express';
 
-import 'reflect-metadata';
-import './infra/database';
 import { routes } from './routes/index.routes';
-import './shared/container';
 
 const path = `${__dirname}/../../../.env`;
 
