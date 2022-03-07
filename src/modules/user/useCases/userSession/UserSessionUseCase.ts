@@ -22,7 +22,9 @@ class UserSessionUseCase {
 
     if (!passwordMatch) throw new AppError('User or Password incorrect');
 
-    const token = sign({}, process.env.SECRET_JWT, { subject: user.id });
+    const token = `Bearer ${sign({}, process.env.SECRET_JWT, {
+      subject: user.id
+    })}`;
 
     return token;
   }

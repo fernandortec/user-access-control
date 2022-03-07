@@ -27,14 +27,14 @@ class CreateUserAccessControlListUseCase {
 
     if (!user) return new AppError('User does not exists');
 
-    const permissionsExists = await this.permissionRepository.findByIds(
+    const permissionsByIds = await this.permissionRepository.findByIds(
       permissions
     );
 
-    const rolesExists = await this.roleRepository.findByIds(roles);
+    const rolesByIds = await this.roleRepository.findByIds(roles);
 
-    user.roles = rolesExists;
-    user.permissions = permissionsExists;
+    user.roles = rolesByIds;
+    user.permissions = permissionsByIds;
 
     await this.userRepository.update(user);
 

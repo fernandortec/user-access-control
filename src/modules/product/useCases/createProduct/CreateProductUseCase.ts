@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
+import AppError from '../../../../shared/errors/AppError';
 import { Product } from '../../../entities/Product';
 import { CreateProductDto } from '../../dtos/CreateProductDto';
 import { ProductRepository } from '../../repositories/ProductRepository';
@@ -15,7 +16,11 @@ class CreateProductUseCase {
     description,
     name,
     price
-  }: CreateProductDto): Promise<Product> {
+  }: CreateProductDto): Promise<Product | AppError> {
+    const productExists = await this.productRepository.findOne(name);
+
+    if (productExists) return new AppError('Product already exists');
+
     const product = await this.productRepository.create({
       description,
       name,

@@ -9,7 +9,8 @@ const ensuredAuthenticated = () => {
     response: Response,
     next: NextFunction
   ): Promise<any> => {
-    const token = request.headers.authorization;
+    const authHeaders = request.headers.authorization;
+    const token = authHeaders.substring(7, authHeaders.length);
 
     if (!token) response.status(401).send(new AppError('Token is missing'));
 

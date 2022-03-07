@@ -27,6 +27,11 @@ class ProductRepositoryImpl implements ProductRepository {
 
     return products;
   }
+
+  async findOne(name: string): Promise<Product> {
+    const product = await this.productRepository.findOne({ name });
+    return product;
+  }
 }
 
 export { ProductRepositoryImpl };

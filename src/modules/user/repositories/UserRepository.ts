@@ -13,6 +13,7 @@ interface UserRepository {
     roles,
     username
   }: User): Promise<void>;
+  findByIdWithRelations(id: string, relations: string[]): Promise<User>;
 }
 
 export { UserRepository };

@@ -25,6 +25,15 @@ class UserRepositoryImpl implements UserRepository {
     return user;
   }
 
+  async findByIdWithRelations(id: string, relations: string[]): Promise<User> {
+    const userWithPermissions = await this.userRepository.findOne({
+      where: { id },
+      relations
+    });
+
+    return userWithPermissions;
+  }
+
   async update({
     id,
     created_at,

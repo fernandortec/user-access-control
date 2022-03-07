@@ -23,11 +23,11 @@ class CreateRolePermissionUseCase {
 
     if (!role) return new AppError('Role does not exists');
 
-    const permissionsExists = await this.permissionRepository.findByIds(
+    const permissionsByIds = await this.permissionRepository.findByIds(
       permissions
     );
 
-    role.permissions = permissionsExists;
+    role.permissions = permissionsByIds;
 
     await this.roleRepository.update(role);
 
