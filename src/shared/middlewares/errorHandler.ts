@@ -12,7 +12,7 @@ const errorHandler = (
     return response.status(400).json(err);
   }
   console.log(err);
-  return response.status(500).send('Internal server error');
+  return response.status(500).send(`Internal server error: ${err.message}`);
 };
 
 export { errorHandler };
