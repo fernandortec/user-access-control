@@ -1,7 +1,7 @@
 import { getRepository } from 'typeorm';
 
-import { CreateRoleDto } from '../../dtos/CreateRoleDto';
 import { Role } from '../../../entities/Role';
+import { CreateRoleDto } from '../../dtos/CreateRoleDto';
 import { RoleRepository } from '../RoleRepository';
 
 class RoleRepositoryImpl implements RoleRepository {
@@ -17,6 +17,11 @@ class RoleRepositoryImpl implements RoleRepository {
     const role = await this.roleRepository.findOne({ name });
 
     return role;
+  }
+
+  async findByIds(ids: string[]): Promise<Role[]> {
+    const roles = await this.roleRepository.findByIds(ids);
+    return roles;
   }
 }
 

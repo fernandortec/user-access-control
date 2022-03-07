@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { getRepository } from 'typeorm';
 
 import { User } from '../../../entities/User';
@@ -18,6 +19,28 @@ class UserRepositoryImpl implements UserRepository {
     const user = await this.userRepository.findOne({ username });
 
     return user;
+  }
+
+  async findById(id: string): Promise<User> {
+    const user = await this.userRepository.findOne(id);
+    return user;
+  }
+
+  async update({
+    id,
+    created_at,
+    password,
+    permissions,
+    roles,
+    username
+  }: User): Promise<void> {
+    await this.userRepository.update(id, {
+      created_at,
+      password,
+      permissions,
+      roles,
+      username
+    });
   }
 }
 

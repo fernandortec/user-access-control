@@ -1,5 +1,4 @@
 import { container } from 'tsyringe';
-import { DelayedConstructor } from 'tsyringe/dist/typings/lazy-helpers';
 
 import { PermissionsRepositoryImpl } from '../../modules/permissions/repositories/implementations/PermissionsRepositoryImpl';
 import { PermissionsRepository } from '../../modules/permissions/repositories/PermissionsRepository';
