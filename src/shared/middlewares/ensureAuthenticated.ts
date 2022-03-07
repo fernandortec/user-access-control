@@ -15,7 +15,9 @@ const ensuredAuthenticated = () => {
 
     try {
       verify(token, process.env.SECRET_JWT);
-      console.log(decode(token));
+      const { sub: userId } = decode(token);
+
+      request.userId = String(userId);
       return next();
     } catch (err) {
       return response.status(401).end();

@@ -34,7 +34,8 @@ class UserRepositoryImpl implements UserRepository {
     roles,
     username
   }: User): Promise<void> {
-    await this.userRepository.update(id, {
+    await this.userRepository.save({
+      id,
       created_at,
       password,
       permissions,

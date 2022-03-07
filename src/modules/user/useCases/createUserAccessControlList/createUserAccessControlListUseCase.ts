@@ -33,11 +33,10 @@ class CreateUserAccessControlListUseCase {
 
     const rolesExists = await this.roleRepository.findByIds(roles);
 
-    await this.userRepository.update({
-      ...user,
-      roles: rolesExists,
-      permissions: permissionsExists
-    });
+    user.roles = rolesExists;
+    user.permissions = permissionsExists;
+
+    await this.userRepository.update(user);
 
     return user;
   }

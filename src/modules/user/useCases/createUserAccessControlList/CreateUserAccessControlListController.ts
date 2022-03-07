@@ -5,7 +5,7 @@ import { CreateUserAccessControlListUseCase } from './createUserAccessControlLis
 
 class CreateUserAccessControlListController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { userId, roles, permissions } = request.body;
+    const { roles, permissions } = request.body;
 
     const createUserAccessControlListUseCase = container.resolve(
       CreateUserAccessControlListUseCase
@@ -15,7 +15,7 @@ class CreateUserAccessControlListController {
       await createUserAccessControlListUseCase.createUserAccessControlList({
         permissions,
         roles,
-        userId
+        userId: request.userId
       });
 
     return response.json(user);
