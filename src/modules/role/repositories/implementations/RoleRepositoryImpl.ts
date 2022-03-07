@@ -23,6 +23,27 @@ class RoleRepositoryImpl implements RoleRepository {
     const roles = await this.roleRepository.findByIds(ids);
     return roles;
   }
+
+  async findById(id: string): Promise<Role> {
+    const role = await this.roleRepository.findOne(id);
+    return role;
+  }
+
+  async update({
+    created_at,
+    description,
+    id,
+    name,
+    permissions
+  }: Role): Promise<void> {
+    await this.roleRepository.save({
+      created_at,
+      description,
+      id,
+      name,
+      permissions
+    });
+  }
 }
 
 export { RoleRepositoryImpl };
