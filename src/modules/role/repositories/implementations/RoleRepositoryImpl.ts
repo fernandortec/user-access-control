@@ -1,7 +1,7 @@
 import { getRepository } from 'typeorm';
 
-import { Role } from '../../../entities/Role';
 import { CreateRoleDto } from '../../dtos/CreateRoleDto';
+import { Role } from '../../../entities/Role';
 import { RoleRepository } from '../RoleRepository';
 
 class RoleRepositoryImpl implements RoleRepository {

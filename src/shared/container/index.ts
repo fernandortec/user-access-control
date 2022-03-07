@@ -1,5 +1,8 @@
 import { container } from 'tsyringe';
+import { DelayedConstructor } from 'tsyringe/dist/typings/lazy-helpers';
 
+import { PermissionsRepositoryImpl } from '../../modules/permissions/repositories/implementations/PermissionsRepositoryImpl';
+import { PermissionsRepository } from '../../modules/permissions/repositories/PermissionsRepository';
 import { ProductRepositoryImpl } from '../../modules/product/repositories/implementations/ProductRepositoryImpl';
 import { ProductRepository } from '../../modules/product/repositories/ProductRepository';
 import { RoleRepositoryImpl } from '../../modules/role/repositories/implementations/RoleRepositoryImpl';
@@ -20,4 +23,9 @@ container.registerSingleton<ProductRepository>(
 container.registerSingleton<RoleRepository>(
   'RoleRepository',
   RoleRepositoryImpl
+);
+
+container.registerSingleton<PermissionsRepository>(
+  'PermissionRepository',
+  PermissionsRepositoryImpl
 );

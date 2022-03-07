@@ -1,7 +1,9 @@
 import dotenv from 'dotenv';
 import express from 'express';
 
+import 'express-async-errors';
 import 'reflect-metadata';
+import './infra/database';
 import { routes } from './routes/index.routes';
 import './shared/container';
 

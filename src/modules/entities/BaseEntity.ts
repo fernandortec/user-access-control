@@ -1,5 +1,5 @@
-import { nanoid } from 'nanoid';
 import { CreateDateColumn, PrimaryColumn } from 'typeorm';
+import { v4 as uuid } from 'uuid';
 
 class BaseEntity {
   @PrimaryColumn()
@@ -9,7 +9,7 @@ class BaseEntity {
   created_at: Date;
 
   constructor() {
-    if (!this.id) this.id = nanoid();
+    if (!this.id) this.id = uuid();
   }
 }
 

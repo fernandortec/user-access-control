@@ -1,8 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '../../../../shared/errors/AppError';
-import { Role } from '../../../entities/Role';
 import { CreateRoleDto } from '../../dtos/CreateRoleDto';
+import { Role } from '../../../entities/Role';
 import { RoleRepository } from '../../repositories/RoleRepository';
 
 @injectable()

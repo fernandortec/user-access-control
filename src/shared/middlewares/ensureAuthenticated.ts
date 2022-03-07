@@ -11,12 +11,11 @@ const ensuredAuthenticated = () => {
   ): Promise<any> => {
     const authHeaders = request.headers.authorization;
 
-    if (!authHeaders) throw new AppError('Token is missing');
-
-    const [, token] = authHeaders.split(' ');
+    if (!authHeaders)
+      response.status(401).send(new AppError('Token is missing'));
 
     try {
-      verify(token, process.env.SECRET_JWT);
+      verify(authHeaders, process.env.SECRET_JWT);
 
       return next();
     } catch (err) {

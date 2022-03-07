@@ -1,8 +1,8 @@
 import { hash } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
 
-import { User } from '../../../entities/User';
 import AppError from '../../../../shared/errors/AppError';
+import { User } from '../../../entities/User';
 import { CreateUserDto } from '../../dtos/CreateUserDto';
 import { UserRepository } from '../../repositories/UserRepository';
 
@@ -13,14 +13,20 @@ class CreateUserUseCase {
     private userRepository: UserRepository
   ) {}
 
-  async createUser({ password, username }: CreateUserDto): Promise<User> {
+  async createUser({
+    password,
+    username
+  }: CreateUserDto): Promise<User | AppError> {
     const existsUser = await this.userRepository.findOne(username);
 
-    if (!existsUser) throw new AppError('User already exists');
+    if (existsUser) return new AppError('User already exists');
 
     const passwordHash = await hash(password, 8);
 
-    const user = await this.createUser({ password: passwordHash, username });
+    const user = await this.userRepository.create({
+      password: passwordHash,
+      username
+    });
 
     return user;
   }

@@ -1,8 +1,9 @@
-import { Column, JoinTable, ManyToMany } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
 
 import { BaseEntity } from './BaseEntity';
 import { Permission } from './Permission';
 
+@Entity('roles')
 class Role extends BaseEntity {
   @Column()
   name: string;
